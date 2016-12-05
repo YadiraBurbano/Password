@@ -1,0 +1,26 @@
+#include <LiquidCrystal.h>
+LiquidCrystal lcd (12,11,5,4,3,2);
+char clave[4]={'2','2','1','2'};
+String entrada;
+
+void setup() {
+Serial.begin(9600);
+lcd.begin(16,2);
+lcd.clear();
+}
+void loop() {
+if(Serial.available()>0)
+{
+  entrada=Serial.readString();
+  lcd.setCursor(0,0);
+  if (entrada=="2212"){
+    lcd.clear();
+    lcd.print("ACESSO CORRECTO");
+  }
+  else{
+    lcd.clear();
+    lcd.println("ACCESO INCORRECTO");
+    lcd.println("INGRESE NUEVAMENTE LA CLAVE DE 4 DÍGITOS");
+  }
+} 
+}
